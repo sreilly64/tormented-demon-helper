@@ -14,7 +14,9 @@ import net.runelite.client.plugins.PluginDescriptor;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Example"
+		name = "Tormented Demons Helper",
+		description = "Provides QoL improvements for fighting Tormented Demons",
+		tags = {"combat", "pve", "pvm", "slayer"}
 )
 public class TormentedDemonHelperPlugin extends Plugin
 {
@@ -36,14 +38,6 @@ public class TormentedDemonHelperPlugin extends Plugin
 		log.info("Example stopped!");
 	}
 
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
-	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
-		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
-		}
-	}
 
 	@Provides
 	TormentedDemonHelperConfig provideConfig(ConfigManager configManager)
