@@ -1,13 +1,13 @@
-package com.example;
+package rr.helpers.tormenteddemonhelper;
 
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
-public class ExamplePluginTest
+public class TormentedDemonHelperPluginTest
 {
 	public static void main(String[] args) throws Exception
 	{
-		ExternalPluginManager.loadBuiltin(ExamplePlugin.class);
+		ExternalPluginManager.loadBuiltin(TormentedDemonHelperPlugin.class);
 		RuneLite.main(args);
 	}
 }
