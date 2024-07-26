@@ -135,10 +135,6 @@ public class TormentedDemonHelperPlugin extends Plugin
 
 		if (TD_IDS.contains(npc.getId()) && hitsplatApplied.getHitsplat().isMine())
 		{
-			//TODO remove logging
-//			Integer currentTick = client.getTickCount();
-//			log.info("{} - Hit TD {} for {} damage", currentTick, npc.getIndex(), hitsplatApplied.getHitsplat().getAmount());
-
 			Integer value = this.accuracyBoostTimerMap.putIfAbsent(npc.getIndex(), 0);
 			if (value == null) // if newly added to map and therefore just initiated combat with a new TD
 			{
@@ -147,22 +143,5 @@ public class TormentedDemonHelperPlugin extends Plugin
 			}
 		}
 	}
-
-	//TODO for attack style detection
-//	@Subscribe
-//	public void onAnimationChanged(AnimationChanged animationChanged)
-//	{
-//		Actor actor = animationChanged.getActor();
-//		if (!(actor instanceof NPC))
-//		{
-//			return;
-//		}
-//		NPC npc = (NPC) actor;
-//		log.info("npc id = {}", npc.getId());
-//		if (Text.removeTags(actor.getName()).equalsIgnoreCase(TORMENTED_DEMON))
-//		{
-//			log.info("TD getAnimation = {}, getPoseAnimation = {}", actor.getAnimation(), actor.getPoseAnimation());
-//		}
-//	}
 
 }
