@@ -63,35 +63,35 @@ public interface TormentedDemonHelperConfig extends Config
 	}
 
 	@Range(
-			min = 8,
+			min = 10,
 			max = 50
 	)
 	@ConfigItem(
 			position = 5,
 			keyName = "fontSize",
 			name = "Timer Font Size",
-			description = "Changes the font size of the boost timer overlay. Min = 8. Max = 50.",
+			description = "Changes the font size of the boost timer overlay. Min = 10. Max = 50.",
 			section = AccuracyBoostTimerSettings
 	)
 	default int fontSize()
 	{
-		return 18;
+		return 20;
 	}
 
 	@Range(
-			min = -70,
-			max = 10
+			min = 0,
+			max = 80
 	)
 	@ConfigItem(
 			position = 6,
 			keyName = "verticalOffset",
-			name = "Timer Vertical Offset",
-			description = "Changes the vertical position of the timer overlay. Min = -70. Max = 10",
+			name = "Timer Height",
+			description = "Changes the vertical position of the timer overlay. Min = 0. Max = 80",
 			section = AccuracyBoostTimerSettings
 	)
 	default int verticalOffset()
 	{
-		return -30;
+		return 40;
 	}
 
 }
