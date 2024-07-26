@@ -25,7 +25,7 @@ import java.util.*;
 )
 public class TormentedDemonHelperPlugin extends Plugin
 {
-	private static final Set<Integer> TD_IDS = ImmutableSet.of(
+	private static final Set<Integer> TORMENTED_DEMON_IDS = ImmutableSet.of(
 			NpcID.TORMENTED_DEMON,
 			NpcID.TORMENTED_DEMON_13600,
 			NpcID.TORMENTED_DEMON_13601,
@@ -97,7 +97,7 @@ public class TormentedDemonHelperPlugin extends Plugin
 	{
 		NPC npc = npcDespawned.getNpc();
 		Integer npcIndex = npc.getIndex();
-		if (TD_IDS.contains(npc.getId()))
+		if (TORMENTED_DEMON_IDS.contains(npc.getId()))
 		{
 			this.accuracyBoostTimerMap.remove(npcIndex);
 		}
@@ -133,7 +133,7 @@ public class TormentedDemonHelperPlugin extends Plugin
 
 		NPC npc = (NPC) actor;
 
-		if (TD_IDS.contains(npc.getId()) && hitsplatApplied.getHitsplat().isMine())
+		if (TORMENTED_DEMON_IDS.contains(npc.getId()) && hitsplatApplied.getHitsplat().isMine())
 		{
 			Integer value = this.accuracyBoostTimerMap.putIfAbsent(npc.getIndex(), 0);
 			if (value == null) // if newly added to map and therefore just initiated combat with a new TD
@@ -141,6 +141,43 @@ public class TormentedDemonHelperPlugin extends Plugin
 				// ignore timer reset on next tormentedDemonShieldScreechSoundId as only this new TD is screeching, not the ones that the player was already fighting
 				skipNextTimerReset = true;
 			}
+		}
+	}
+
+	@Subscribe
+	public void onInteractingChanged(InteractingChanged interactingChanged)
+	{
+		// ultimately want to filter interactingChanged events so that we only process TDs that have stopped interacting with the local player (changing to no target actor)
+		if (interactingChanged.getTarget() != null)
+		{
+			return;
+		}
+
+		Actor sourceActor = interactingChanged.getSource();
+		// if source actor is not an NPC and therefore not a TD, skip
+		if (!(sourceActor instanceof NPC))
+		{
+			return;
+		}
+
+		NPC sourceNpc = (NPC) sourceActor;
+
+		// if not a TD, skip
+		if (!TORMENTED_DEMON_IDS.contains(sourceNpc.getId()))
+		{
+			return;
+		}
+
+		// if TD is not in combat with the local player, skip
+		if (!accuracyBoostTimerMap.containsKey(sourceNpc.getIndex()))
+		{
+			return;
+		}
+
+		// at this point there are only interactingChanged with source = TD, target = none, and TD is in combat with the local player
+		if (sourceNpc.getHealthRatio() == -1) // if the health bar of the TD is no longer rendered when its interacting changes to no target, then assume the player has safe spotted the TD and is no longer engaged in combat
+		{
+			accuracyBoostTimerMap.remove(sourceNpc.getIndex());
 		}
 	}
 
