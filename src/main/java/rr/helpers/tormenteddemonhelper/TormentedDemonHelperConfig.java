@@ -18,7 +18,7 @@ public interface TormentedDemonHelperConfig extends Config
 			position = 1,
 			keyName = "showTimer",
 			name = "Show Accuracy Boost Timer",
-			description = "Toggles whether to overlay the number of ticks since start of combat or last fire bomb attack",
+			description = "Toggles whether to display the accuracy boost timer overlay when fighting Tormented Demons",
 			section = AccuracyBoostTimerSettings
 	)
 	default boolean showTimer()
@@ -84,12 +84,12 @@ public interface TormentedDemonHelperConfig extends Config
 	)
 	@ConfigItem(
 			position = 6,
-			keyName = "verticalOffset",
+			keyName = "timerHeight",
 			name = "Timer Height",
 			description = "Changes the vertical position of the timer overlay. Min = 0. Max = 80",
 			section = AccuracyBoostTimerSettings
 	)
-	default int verticalOffset()
+	default int timerHeight()
 	{
 		return 40;
 	}

@@ -29,7 +29,7 @@ public class TormentedDemonHelperOverlay extends Overlay {
 
     private void renderAccuracyBoostTimerOverlay(Graphics2D graphics, NPC npc, String text, Color color)
     {
-        Integer zOffset = npc.getLogicalHeight() + (this.config.verticalOffset() - 70) * 10; // minimum of -700 places the overlay at the TDs feet
+        Integer zOffset = npc.getLogicalHeight() + (this.config.timerHeight() - 70) * 10; // minimum of -700 places the overlay at the TDs feet
         Point textLocation = npc.getCanvasTextLocation(graphics, text, zOffset);
         if (textLocation != null)
         {

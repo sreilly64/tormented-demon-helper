@@ -36,8 +36,6 @@ public class TormentedDemonHelperPlugin extends Plugin
 			NpcID.TORMENTED_DEMON_13606
 	);
 
-	private final String TORMENTED_DEMON = "Tormented Demon";
-
 	private final Integer tormentedDemonShieldScreechSoundId = 9259;
 
 	private final Integer amountOfTicksBeforeAccuracyBoost = 30; //from testing, boost becomes active after the first 30 ticks following the above screech sound event
@@ -116,9 +114,6 @@ public class TormentedDemonHelperPlugin extends Plugin
 			{
 				this.accuracyBoostTimerMap.replaceAll((index, tick) -> 0);
 			}
-
-			Integer currentTick = client.getTickCount();
-			log.info("{} - TD screech played and timers reset", currentTick);
 		}
 	}
 
