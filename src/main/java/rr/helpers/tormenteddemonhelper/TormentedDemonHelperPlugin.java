@@ -21,7 +21,7 @@ import java.util.*;
 @PluginDescriptor(
 		name = "Tormented Demon Helper",
 		description = "Provides QoL improvements for fighting Tormented Demons",
-		tags = {"combat", "pve", "pvm", "slayer"}
+		tags = {"combat", "pve", "pvm", "slayer", "td", "tormented demon"}
 )
 public class TormentedDemonHelperPlugin extends Plugin
 {
